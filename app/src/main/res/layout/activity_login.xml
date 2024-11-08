@@ -195,7 +195,7 @@
         android:textStyle="bold"
         tools:layout_editor_absoluteX="244dp"
         tools:layout_editor_absoluteY="858dp"
-        app:layout_constraintStart_toStartOf="dontHaveAccountText"
+        app:layout_constraintStart_toStartOf="@+id/dontHaveAccountText"
         app:layout_constraintTop_toBottomOf="@id/separator"
         android:layout_marginTop="40dp" />
 
