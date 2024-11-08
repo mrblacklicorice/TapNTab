@@ -1,3 +1,49 @@
 <resources>
     <string name="app_name">TapNTab</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="sign_out"><u>Sign Out</u></string>
+    <string name="privacy_policy"><u>Privacy &amp; Policy</u></string>
+    <string name="sign_up"><u>Sign Up</u></string>
+    <string name="hint_email">Email Address</string>
+    <string name="username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="hint_phone_number">Phone Number</string>
+    <string name="hint_first_name">First Name</string>
+    <string name="hint_last_name">Last Name</string>
+    <string name="welcome_text">Welcome</string>
+    <string name="back_text"> Back!</string>
+    <string name="back_button_description"> Arrow pointing back</string>
+    <string name="green_arrow_description">Up vote arrow</string>
+    <string name="red_arrow_description">Down vote arrow</string>
+    <string name="plus_button_desc">Plus button to start an order</string>
+    <string name="dont_have_account">DON\'T HAVE ACCOUNT?</string>
+    <string name="log_in">LOG IN</string>
+    <string name="sign_up_now">SIGN UP NOW</string>
+    <string name="simplifying_bars">Simplifying Bars, One Tap at a Time</string>
+    <string name="tapntab">TapNTab</string>
+    <string name="notifications">Notifications</string>
+    <string name="online_status">Online Status</string>
+    <string name="change_password">Change Password</string>
+    <string name="recent_tabs">Recent Tabs</string>
+    <string name="back">BACK</string>
+    <string name="profile">Profile</string>
+    <string name="email_com">name@email.com</string>
+    <string name="information">Information</string>
+    <string name="general_settings">General Settings</string>
+    <string name="payment">Payment</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="create_an">Create an</string>
+    <string name="account">Account!</string>
+    <string name="remember_me">Remember me for 30 days</string>
+    <string name="close_tab">CLOSE TAB</string>
+    <string name="click_menu">Click the MENU to get started</string>
+    <string name="last_updated">Last updated: 23:11</string>
+    <string name="at_location">at BRATS, MADISON</string>
+    <string name="menu">MENU</string>
+    <string name="your_tab">Your Tab</string>
+    <string name="update">Update</string>
+    <string name="already_acc">Already have an account?</string>
+
+
 </resources>
