@@ -13,6 +13,18 @@
         android:theme="@style/Theme.TapNTab"
         tools:targetApi="31">
         <activity
+            android:name=".PastTabs"
+            android:exported="false" />
+        <activity
+            android:name=".NewPassword"
+            android:exported="false" />
+        <activity
+            android:name=".CheckEmail"
+            android:exported="false" />
+        <activity
+            android:name=".ChangePassword"
+            android:exported="false" />
+        <activity
             android:name=".StartTabActivity"
             android:exported="false" />
         <activity
