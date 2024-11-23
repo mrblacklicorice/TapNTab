@@ -13,7 +13,6 @@
         android:layout_height="172dp"
         android:layout_centerInParent="true"
         android:foregroundGravity="center_vertical|center_horizontal"
-        android:srcCompat="@drawable/coupon"
         app:srcCompat="@drawable/coupon" />
 
     <ImageView
@@ -24,7 +23,6 @@
         android:layout_alignTop="@id/imageView3"
         android:layout_marginStart="20dp"
         android:layout_marginTop="60dp"
-        android:srcCompat="@drawable/app_logo"
         app:srcCompat="@drawable/app_logo" />
 
     <TextView

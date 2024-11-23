@@ -40,7 +40,8 @@
             android:background="@drawable/rounded_input_background"
             android:hint="Search"
             android:inputType="text"
-            android:textColorHint="#888888"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFDFD"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -65,13 +66,13 @@
         android:layout_marginTop="131dp"
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/quick_adds"
-        app:layout_constraintEnd_toEndOf="@+id/quick_adds"
-        app:layout_constraintStart_toEndOf="@+id/quick_adds"
+        app:layout_constraintBottom_toTopOf="@+id/category_title"
+        app:layout_constraintEnd_toEndOf="@+id/category_title"
+        app:layout_constraintStart_toEndOf="@+id/category_title"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/quick_adds"
+        android:id="@+id/category_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="29dp"
@@ -85,15 +86,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/items_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginBottom="84dp"
+        android:foregroundGravity="top"
         app:flow_verticalAlign="center"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/quick_adds"
+        app:layout_constraintEnd_toEndOf="@+id/category_title"
         app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toEndOf="@+id/quick_adds"
-        app:layout_constraintTop_toBottomOf="@+id/quick_adds" />
+        app:layout_constraintStart_toEndOf="@+id/category_title"
+        app:layout_constraintTop_toBottomOf="@+id/category_title"
+        tools:itemCount="1"
+        tools:listitem="@layout/card_long_item" />
 
     <RelativeLayout
         android:id="@+id/bottom_tab"
@@ -131,7 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="3dp"
-                android:text="$21.22"
+                android:text="$00.00"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -206,7 +210,7 @@
 
             <TextView
                 android:id="@+id/item_title2"
-                android:layout_width="236dp"
+                android:layout_width="216dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:gravity="start"
@@ -228,7 +232,7 @@
 
             <TextView
                 android:id="@+id/cost2"
-                android:layout_width="101dp"
+                android:layout_width="169dp"
                 android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -258,7 +262,9 @@
             android:layout_marginBottom="84dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager">
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="3"
+            tools:listitem="@layout/bill_item">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -269,7 +275,7 @@
             android:layout_below="@id/bill_recycler_view"
             android:foregroundGravity="bottom"
             android:gravity="center"
-            android:text="Pay"
+            android:text="Add to Tab"
             app:layout_constraintBottom_toBottomOf="parent" />
     </RelativeLayout>
 

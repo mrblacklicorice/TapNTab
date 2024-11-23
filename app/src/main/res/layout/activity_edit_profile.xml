@@ -88,7 +88,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/menu"
+            android:id="@+id/basicProfilePic"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
@@ -137,6 +137,7 @@
         android:hint="@string/hint_first_name"
         android:inputType="text"
         android:textColorHint="#888888"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/EditProf"
@@ -153,6 +154,7 @@
         android:hint="@string/hint_last_name"
         android:inputType="text"
         android:textColorHint="#888888"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/FirstName"
@@ -170,6 +172,7 @@
         android:hint="@string/username"
         android:inputType="text"
         android:textColorHint="#888888"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/LastName"
@@ -186,6 +189,7 @@
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
         android:textColorHint="#888888"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/username"
@@ -203,6 +207,7 @@
         android:hint="@string/hint_phone_number"
         android:inputType="phone"
         android:textColorHint="#888888"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailInput"

@@ -19,6 +19,7 @@
     <string name="plus_button_desc">Plus button to start an order</string>
     <string name="dont_have_account">DON\'T HAVE ACCOUNT?</string>
     <string name="log_in">LOG IN</string>
+    <string name="Sign_up_big">SIGN UP</string>
     <string name="sign_up_now">SIGN UP NOW</string>
     <string name="simplifying_bars">Simplifying Bars, One Tap at a Time</string>
     <string name="tapntab">TapNTab</string>
@@ -52,8 +53,6 @@
         <item>Last month</item>
         <item>All time</item>
     </string-array>
-
-
 
 
 </resources>

@@ -24,6 +24,7 @@ class MenuCategoriesAdapter(private val categories: List<CategoryItem>) :
         val category = categories[position]
         holder.imageView.setImageResource(category.icon)
         holder.textView.text = category.title
+        holder.itemView.setOnClickListener { category.onClick() }
     }
 
     override fun getItemCount(): Int = categories.size

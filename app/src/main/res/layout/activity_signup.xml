@@ -53,6 +53,7 @@
         android:hint="@string/username"
         android:inputType="text"
         android:textColorHint="#888888"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/CreateText"
@@ -69,6 +70,7 @@
         android:hint="@string/hint_email"
         android:inputType="textEmailAddress"
         android:textColorHint="#888888"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/username"
@@ -86,6 +88,7 @@
         android:hint="@string/hint_password"
         android:inputType="textPassword"
         android:textColorHint="#888888"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailInput"
@@ -102,6 +105,7 @@
         android:hint="@string/hint_confirm_password"
         android:inputType="textPassword"
         android:textColorHint="#888888"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordInput"
@@ -128,14 +132,14 @@
 
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/signUpButton"
         android:layout_width="0dp"
         android:layout_height="65dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="#740182"
-        android:text="@string/log_in"
+        android:text="@string/Sign_up_big"
         android:textColor="#FFFFFF"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -221,7 +225,7 @@
         android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/loginButton"
+        android:layout_below="@id/signUpButton"
         android:background="#FFFFFF"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="831dp"
@@ -229,7 +233,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/loginButton"/>
+        app:layout_constraintTop_toBottomOf="@id/signUpButton"/>
 
     <TextView
         android:id="@+id/alreadyAccountText22"
@@ -255,14 +259,14 @@
         android:textColor="#888888"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/logIn"
+        app:layout_constraintEnd_toStartOf="@id/logInbuttonSignup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintTop_toBottomOf="@id/separator"
         android:layout_marginEnd="12dp"/>
 
     <TextView
-        android:id="@+id/logIn"
+        android:id="@+id/logInbuttonSignup"
         android:layout_height="48dp"
         android:layout_alignBaseline="@id/dontHaveAccountText"
         android:layout_toEndOf="@id/dontHaveAccountText"

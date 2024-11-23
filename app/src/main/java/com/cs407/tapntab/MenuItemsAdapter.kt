@@ -3,6 +3,7 @@ package com.cs407.tapntab
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -14,12 +15,16 @@ class MenuItemsAdapter(private val items: List<MenuItem>) :
         var icon: ImageView = view.findViewById(R.id.icon_image)
         var title: TextView = view.findViewById(R.id.item_title)
         var cost: TextView = view.findViewById(R.id.cost_text)
+        var add: ImageButton = view.findViewById(R.id.add)
 
         fun bind(item: MenuItem) {
             icon.setImageResource(item.icon)
             title.text = item.name
-            cost.text = item.cost
-            itemView.setOnClickListener { item.onClick() }
+            cost.text = item.dispCost
+
+            add.setOnClickListener {
+                item.onClick()
+            }
         }
     }
 

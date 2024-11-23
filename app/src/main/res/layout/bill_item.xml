@@ -1,6 +1,6 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="10dp"
@@ -8,20 +8,31 @@
     app:cardElevation="4dp">
 
     <LinearLayout
-        android:layout_width="397dp"
-        android:layout_height="62dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal"
         android:padding="8dp">
 
         <TextView
             android:id="@+id/item_title"
-            android:layout_width="231dp"
+            android:layout_width="192dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center|left"
             android:gravity="start"
             android:text="Sample Text"
             android:textAlignment="textStart"
             android:textSize="16sp" />
+
+        <ImageButton
+            android:id="@+id/down"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_gravity="center"
+            android:backgroundTint="#FFFFFF"
+            android:foregroundGravity="center_horizontal"
+            app:srcCompat="@drawable/baseline_arrow_drop_down_10" />
 
         <TextView
             android:id="@+id/qty"
@@ -33,9 +44,18 @@
             android:textAlignment="center"
             android:textSize="16sp" />
 
+        <ImageButton
+            android:id="@+id/up"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:layout_gravity="center"
+            android:backgroundTint="#FFFFFF"
+            android:foregroundGravity="center"
+            app:srcCompat="@drawable/baseline_arrow_drop_up_10" />
+
         <TextView
             android:id="@+id/cost"
-            android:layout_width="124dp"
+            android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
