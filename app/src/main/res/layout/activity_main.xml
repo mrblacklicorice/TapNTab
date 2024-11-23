@@ -59,7 +59,7 @@
         android:layout_centerHorizontal="true"/>
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/loginButtonFirstScreen"
         android:layout_width="277dp"
         android:layout_height="87dp"
         android:layout_below="@id/subtitleText"
@@ -75,7 +75,7 @@
         android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_below="@id/loginButton"
+        android:layout_below="@id/loginButtonFirstScreen"
         android:layout_marginTop="151dp"
         android:background="#FFFFFF" />
 
