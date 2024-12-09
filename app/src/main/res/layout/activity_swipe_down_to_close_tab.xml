@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0a0322"
+    tools:context=".SwipeDownToCloseTabActivity">
+
+    <!-- Swipe Down Icon -->
+
+    <!-- Swipe Down Text -->
+
+    <!-- Swipe Down Bold Text -->
+
+    <!-- Background Logo -->
+
+    <!-- Thank You Text -->
+
+    <ImageView
+        android:id="@+id/swipeDownIcon"
+        android:layout_width="256dp"
+        android:layout_height="273dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/swipe_down_description"
+        android:src="@drawable/swipedown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Go Back to Tab Button -->
+
+    <ImageView
+        android:id="@+id/bratsLogoBackground"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:alpha="0.2"
+        android:contentDescription="@string/logo_description_swipe_down"
+        android:scaleType="fitCenter"
+        android:src="@drawable/brats_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="260dp" />
+
+    <TextView
+        android:id="@+id/welcomeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="372dp"
+        android:gravity="center"
+        android:text="Thank you for visiting
+                    Brats, Madison"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/goBackButton"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="52dp"
+        android:backgroundTint="#FFFFFF"
+        android:gravity="center"
+        android:letterSpacing="0.1"
+        android:text="GO BACK TO TAB"
+        android:textColor="#0A0322"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
