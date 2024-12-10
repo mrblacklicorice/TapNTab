@@ -13,7 +13,6 @@ class SwipeUpToOpenTabActivity : AppCompatActivity() {
 
     private lateinit var gestureDetector: GestureDetector
 
-    // Constants for swipe detection
     private val SWIPE_THRESHOLD = 100
     private val VELOCITY_THRESHOLD = 100
 
