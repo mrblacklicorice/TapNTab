@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">TapNTab</string>
     <string name="forgot_password"><u>Forgot Password?</u></string>
     <string name="sign_out"><u>Sign Out</u></string>
@@ -44,6 +44,23 @@
     <string name="your_tab">Your Tab</string>
     <string name="update">Update</string>
     <string name="already_acc">Already have an account?</string>
+    <string name="app_name" tools:ignore="DuplicateDefinition">TapNTap</string>
+    <string name="search_hint">Search</string>
+    <string name="favorites_title">YOUR FAVORITES ❤️</string>
+    <string name="most_popular_title">MOST POPULAR 🔥</string>
 
+    <!-- Placeholder Strings for Bars -->
+    <string name="brats_madison">Brats Madison</string>
+    <string name="whiskey_jacks_saloon">Whiskey Jack\'s Saloon</string>
+    <string name="dannys_pub">Danny\'s Pub</string>
+
+    <string name="votes_suffix"> votes</string>
+    <string name="location_pin_description">Location pin icon</string>
+    <string name="tnt_logo_description">TapNTap logo</string>
+    <string name="search_icon_description">Search icon</string>
+    <string name="fire_icon_description">Fire icon</string>
+    <string name="bar_image">Bar image placeholder</string>
+    <string name="nfc_reader_description">nfc reader image</string>
+    <string name="hold_near_reader_prompt">Hold Near Reader To Get Started</string>
 
 </resources>

@@ -13,8 +13,10 @@ class SwipeUpToOpenTabActivity : AppCompatActivity() {
 
     private lateinit var gestureDetector: GestureDetector
 
-    private val SWIPE_THRESHOLD = 100
-    private val VELOCITY_THRESHOLD = 100
+    companion object {
+        private const val SWIPE_THRESHOLD = 100
+        private const val VELOCITY_THRESHOLD = 100
+    }
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +33,14 @@ class SwipeUpToOpenTabActivity : AppCompatActivity() {
                 velocityY: Float
             ): Boolean {
                 if (e1 != null && e2 != null) {
-                    // Detect swipe down: e2.y > e1.y
-                    if (e2.y - e1.y > SWIPE_THRESHOLD && Math.abs(velocityY) > VELOCITY_THRESHOLD) {
-                        onSwipeDown()
+                    val diffY = e2.y - e1.y
+                    val diffX = e2.x - e1.x
+
+                    // Check for vertical swipe
+                    if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > VELOCITY_THRESHOLD) {
+                        if (diffY < 0) { // Swipe up detected
+                            onSwipeUp()
+                        }
                         return true
                     }
                 }
@@ -54,9 +61,10 @@ class SwipeUpToOpenTabActivity : AppCompatActivity() {
         return event?.let { gestureDetector.onTouchEvent(it) } == true || super.onTouchEvent(event)
     }
 
-    // Swipe down action
-    private fun onSwipeDown() {
-        // Handle the swipe-down action
-        finish() // Close the activity (you can modify this as needed)
+    // Swipe up action
+    private fun onSwipeUp() {
+        // Handle the swipe-up action
+        // Example: Start a new activity or navigate to another screen
+        finish() // Placeholder: Replace with desired functionality
     }
 }
