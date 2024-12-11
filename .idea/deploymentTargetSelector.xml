@@ -2,12 +2,23 @@
 <project version="4">
   <component name="deploymentTargetSelector">
     <selectionStates>
-      <SelectionState runConfigName="app">
+      <SelectionState runConfigName="MainActivity">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-11-09T00:17:49.477216Z">
+        <DropdownSelection timestamp="2024-12-10T23:55:06.499990Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/kadodwala/.android/avd/Pixel_6_API_34.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/nikkirobak/.android/avd/Pixel_6_API_34.avd" />
+            </handle>
+          </Target>
+        </DropdownSelection>
+        <DialogSelection />
+      </SelectionState>
+      <SelectionState runConfigName="Unnamed">
+        <option name="selectionMode" value="DROPDOWN" />
+        <DropdownSelection timestamp="2024-12-10T23:53:58.920918Z">
+          <Target type="DEFAULT_BOOT">
+            <handle>
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/nikkirobak/.android/avd/Pixel_6_API_34.avd" />
             </handle>
           </Target>
         </DropdownSelection>

@@ -81,24 +81,24 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<View>(R.id.OnlineRow).setOnClickListener {
-            val switchStatus = findViewById<com.google.android.material.switchmaterial.SwitchMaterial>(R.id.switchStatus)
-            val statusIcon = findViewById<ImageView>(R.id.OnlineIcon)
-
-            switchStatus.isChecked = !switchStatus.isChecked // Toggle the switch state
-
-            if (switchStatus.isChecked) {
-                // Online: Change icon to online status
-                statusIcon.setImageResource(R.drawable.online_picc) // Online image with green dot
-                Toast.makeText(this, "Online status: ON", Toast.LENGTH_SHORT).show()
-                // Add logic to mark user online
-            } else {
-                // Offline: Change icon to offline status
-                statusIcon.setImageResource(R.drawable.offline_pic) // Offline image with grey dot
-                Toast.makeText(this, "Online status: OFF", Toast.LENGTH_SHORT).show()
-                // Add logic to mark user offline
-            }
-        }
+//        findViewById<View>(R.id.OnlineRow).setOnClickListener {
+//            val switchStatus = findViewById<com.google.android.material.switchmaterial.SwitchMaterial>(R.id.switchStatus)
+//            val statusIcon = findViewById<ImageView>(R.id.OnlineIcon)
+//
+//            switchStatus.isChecked = !switchStatus.isChecked // Toggle the switch state
+//
+//            if (switchStatus.isChecked) {
+//                // Online: Change icon to online status
+//                statusIcon.setImageResource(R.drawable.online_picc) // Online image with green dot
+//                Toast.makeText(this, "Online status: ON", Toast.LENGTH_SHORT).show()
+//                // Add logic to mark user online
+//            } else {
+//                // Offline: Change icon to offline status
+//                statusIcon.setImageResource(R.drawable.offline_pic) // Offline image with grey dot
+//                Toast.makeText(this, "Online status: OFF", Toast.LENGTH_SHORT).show()
+//                // Add logic to mark user offline
+//            }
+//        }
 
         findViewById<View>(R.id.SignOut).setOnClickListener {
             // Add logic to clear session or user state

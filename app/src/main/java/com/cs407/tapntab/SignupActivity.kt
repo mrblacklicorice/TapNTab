@@ -1,5 +1,6 @@
 package com.cs407.tapntab
 
+import com.cs407.tapntab.NavigationActivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
@@ -88,6 +89,14 @@ class SignupActivity : AppCompatActivity() {
                     )
 
                     usersRef.add(newUser).await()
+
+                    // Save user details in SharedPreferences
+                    val sharedPreferences = getSharedPreferences("UserProfile", Context.MODE_PRIVATE)
+                    val editor = sharedPreferences.edit()
+
+                    editor.putString("username", username)
+                    editor.putString("email", email)
+                    editor.apply()
 
                     Toast.makeText(this@SignupActivity, "Account created successfully!", Toast.LENGTH_SHORT).show()
                     AccountUtil.saveUserDetails(this@SignupActivity, username, email)
