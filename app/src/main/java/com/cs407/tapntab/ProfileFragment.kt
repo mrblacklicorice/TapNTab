@@ -127,7 +127,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun showToast(message: String) {
-        Toast.makeText(requireContext().applicationContext, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onResume() {
