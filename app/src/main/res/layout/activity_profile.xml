@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0a0322"
-    tools:context=".ProfileActivity">
+    tools:context=".ProfileFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/backButtonContainer"
@@ -202,53 +202,53 @@
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/OnlineRow"
-        android:layout_width="match_parent"
-        android:layout_height="63dp"
-        android:background="#0a0322"
-        android:clickable="true"
-        android:focusable="true"
-        android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/NotificationsRow"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--        android:id="@+id/OnlineRow"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="63dp"-->
+<!--        android:background="#0a0322"-->
+<!--        android:clickable="true"-->
+<!--        android:focusable="true"-->
+<!--        android:padding="16dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/NotificationsRow"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
 
-        <ImageView
-            android:id="@+id/OnlineIcon"
-            android:layout_width="49dp"
-            android:layout_height="49dp"
-            android:contentDescription="Status Icon"
-            android:src="@drawable/offline_pic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--        <ImageView-->
+<!--            android:id="@+id/OnlineIcon"-->
+<!--            android:layout_width="49dp"-->
+<!--            android:layout_height="49dp"-->
+<!--            android:contentDescription="Status Icon"-->
+<!--            android:src="@drawable/offline_pic"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
-        <TextView
-            android:id="@+id/OnlineText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="@string/online_status"
-            android:textColor="#FFFFFF"
-            android:textSize="22sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/switchStatus"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@id/OnlineIcon"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+<!--        <TextView-->
+<!--            android:id="@+id/OnlineText"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:text="@string/online_status"-->
+<!--            android:textColor="#FFFFFF"-->
+<!--            android:textSize="22sp"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toStartOf="@id/switchStatus"-->
+<!--            app:layout_constraintHorizontal_bias="0.0"-->
+<!--            app:layout_constraintStart_toEndOf="@id/OnlineIcon"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_bias="1.0" />-->
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switchStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:thumbTint="@color/pink"
-            app:trackTint="@color/white" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        <com.google.android.material.switchmaterial.SwitchMaterial-->
+<!--            android:id="@+id/switchStatus"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:thumbTint="@color/pink"-->
+<!--            app:trackTint="@color/white" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/SignOut"
@@ -312,7 +312,7 @@
         android:clickable="true"
         android:focusable="true"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/OnlineRow"
+        app:layout_constraintTop_toBottomOf="@id/NotificationsRow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
@@ -454,20 +454,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/PrivPolicy"
-        android:layout_width="wrap_content"
-        android:layout_height="65dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center_vertical"
-        android:text="@string/privacy_policy"
-        android:textColor="#888888"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/SignOut"
-        app:layout_constraintTop_toBottomOf="@id/PasswordRow" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

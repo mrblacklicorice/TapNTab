@@ -49,7 +49,7 @@ class EditProfile : AppCompatActivity() {
 
         //
         findViewById<View>(R.id.backButtonContainer).setOnClickListener {
-            val intent = Intent(this, ProfileActivity::class.java)
+            val intent = Intent(this, ProfileFragment::class.java)
             startActivity(intent)
         }
 
@@ -155,6 +155,7 @@ class EditProfile : AppCompatActivity() {
             return
         }
 
+
         // Validate if username, email, or phone already exists
         if (username.isNotEmpty() && isFieldInUse("username", username)) {
             Toast.makeText(this, "Username already in use", Toast.LENGTH_SHORT).show()
@@ -177,19 +178,20 @@ class EditProfile : AppCompatActivity() {
             }
         }
 
-        // Update current user details
-        if (firstName.isNotEmpty()) currentUser["firstName"] = firstName
-        if (lastName.isNotEmpty()) currentUser["lastName"] = lastName
-        if (username.isNotEmpty()) currentUser["username"] = username
-        if (email.isNotEmpty()) currentUser["email"] = email
-        if (phone.isNotEmpty()) currentUser["phone"] = phone
+        // Update `SharedPreferences` with new user details
+        val sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        if (firstName.isNotEmpty()) editor.putString("firstName", firstName)
+        if (lastName.isNotEmpty()) editor.putString("lastName", lastName)
+        if (username.isNotEmpty()) editor.putString("username", username)
+        if (email.isNotEmpty()) editor.putString("email", email)
+        if (phone.isNotEmpty()) editor.putString("phone", phone)
+
+        editor.apply()
 
         Toast.makeText(this, "Profile updated successfully!", Toast.LENGTH_SHORT).show()
 
         // Navigate back to ProfileActivity to refresh details
-        val intent = Intent(this, ProfileActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP // Ensure ProfileActivity refreshes
-        startActivity(intent)
         finish()
     }
 

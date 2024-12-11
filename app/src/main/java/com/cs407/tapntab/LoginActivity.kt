@@ -150,6 +150,14 @@ class LoginActivity : AppCompatActivity() {
                     AccountUtil.saveUserDetails(this@LoginActivity, document.getString("username") ?: "", email)
 
                     if (storedHashedPassword == hashedInputPassword) {
+                        // Save user details in SharedPreferences upon successful login
+                        val sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE)
+                        val editor = sharedPreferences.edit()
+                        editor.putString("username", document.getString("username"))
+                        editor.putString("email", email)
+                        editor.apply()
+
+                        // Update last accessed timestamp in Firebase
                         usersRef.document(document.id)
                             .update("lastAccessed", com.google.firebase.Timestamp.now()).await()
 
