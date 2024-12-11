@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0a0322"
-    tools:context=".SwipeUpToOpenTabActivity">
+    tools:context=".SwipeUpToOpenTabFragment">
 
     <!-- Background Logo (Translucent) -->
     <ImageView
@@ -16,7 +16,7 @@
         android:layout_height="300dp"
         android:layout_marginTop="120dp"
         android:alpha="0.2"
-        android:contentDescription="@string/logo_description"
+        android:contentDescription="@string/brats_madison"
         android:scaleType="fitCenter"
         android:src="@drawable/brats_logo"
         app:layout_constraintEnd_toEndOf="parent"

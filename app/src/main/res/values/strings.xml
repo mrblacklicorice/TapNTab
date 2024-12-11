@@ -45,9 +45,7 @@
     <string name="update">Update</string>
     <string name="already_acc">Already have an account?</string>
     <string name="Sign_up_big">SIGN UP</string>
-    <string name="swipe_down_description">Swipe down Arrows</string>
     <string name="logo_description">background logo</string>
-    <string name="swipe_up_description">swipe up arrows</string>
     <string-array name="time_filter_options">
         <item>Last 24hrs</item>
         <item>Last week</item>
@@ -63,13 +61,37 @@
     <string name="whiskey_jacks_saloon">Whiskey Jack\'s Saloon</string>
     <string name="dannys_pub">Danny\'s Pub</string>
 
+    <!-- Icons and Descriptions -->
     <string name="votes_suffix"> votes</string>
     <string name="location_pin_description">Location pin icon</string>
     <string name="tnt_logo_description">TapNTap logo</string>
     <string name="search_icon_description">Search icon</string>
     <string name="fire_icon_description">Fire icon</string>
     <string name="bar_image">Bar image placeholder</string>
-    <string name="nfc_reader_description">nfc reader image</string>
+    <string name="nfc_reader_description">NFC reader image</string>
     <string name="hold_near_reader_prompt">Hold Near Reader To Get Started</string>
 
+    <!-- Swipe-related Strings -->
+    <string name="swipe_down_description">Swipe down to close tab</string>
+    <string name="logo_description_swipe_down">Brats logo as background</string>
+    <string name="thank_you_text">Thank you for visiting Brats, Madison</string>
+    <string name="go_back_to_tab">GO BACK TO TAB</string>
+
+    <!-- Error Messages -->
+    <string name="error_email_invalid">Invalid email address</string>
+    <string name="error_password_short">Password must be at least 6 characters</string>
+    <string name="error_field_required">This field is required</string>
+
+    <!-- Success Messages -->
+    <string name="success_sign_up">Account created successfully</string>
+    <string name="success_password_reset">Password reset link sent</string>
+
+    <!-- Swipe Up Section -->
+    <string name="swipe_up_description">Swipe up to open your tab</string>
+    <string name="logo_description_swipe_up">Background logo for swipe up screen</string>
+
+    <!-- Miscellaneous -->
+    <string name="loading">Loading...</string>
+    <string name="no_data">No data available</string>
+    <string name="try_again">Try Again</string>
 </resources>
