@@ -65,9 +65,6 @@ class ProfileFragment : Fragment() {
             navigateTo(EditProfile::class.java)
         }
 
-        view.findViewById<View>(R.id.paymentRow).setOnClickListener {
-            navigateTo(NFCReaderActivity::class.java) // Placeholder
-        }
 
         view.findViewById<View>(R.id.TabRow).setOnClickListener {
             navigateTo(PastTabs::class.java) // Placeholder
