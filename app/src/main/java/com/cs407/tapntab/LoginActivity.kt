@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 if (authenticateUser(email, password)) {
                     // If credentials are correct, navigate to the first page
-                    val intent = Intent(this@LoginActivity, FrontPageActivity::class.java)
+                    val intent = Intent(this@LoginActivity, NavigationActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
@@ -82,6 +82,13 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
+
+        // Forgot Password button logic to navigate to ChangePassword activity
+        findViewById<View>(R.id.forgotPasswordText).setOnClickListener {
+            val intent = Intent(this, ChangePassword::class.java)
+            startActivity(intent)
+        }
+
 
         // Validate Remember Me on app start
         validateRememberMe()
