@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 // Adapter for the Bar RecyclerView
 class BarAdapter(
-    private val bars: List<Bar>,           // List of bars to display
+    private val bars: List<BarForDisplay>, // Consistent type: BarForDisplay
     private val clickListener: (BarForDisplay) -> Unit // Lambda function for click handling
 ) : RecyclerView.Adapter<BarAdapter.BarViewHolder>() {
 
