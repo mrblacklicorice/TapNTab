@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -82,17 +83,18 @@ class SwipeDownToCloseTabFragment : Fragment() {
     }
 
 
-//    private fun navigateToFrontPage() {
-//        requireActivity().supportFragmentManager.beginTransaction()
-//            .replace(R.id.fragment_container, FrontpageFragment())
-//            .addToBackStack(null)
-//            .commit()
-//    }
-
     private fun navigateToFrontPage() {
+        Toast.makeText(
+            requireContext(),
+            "Your tab was successfully closed. Talk to bartender to pay.",
+            Toast.LENGTH_LONG
+        ).show()
+
         requireActivity().supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, StartTabFragment()) // change to front page
+            .replace(R.id.fragment_container, FrontPageFragment1())
             .addToBackStack(null)
             .commit()
     }
+
+
 }

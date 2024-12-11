@@ -7,41 +7,39 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-// Adapter for the Bar RecyclerView
 class BarAdapter(
-    private val bars: List<BarForDisplay>, // Consistent type: BarForDisplay
-    private val clickListener: (BarForDisplay) -> Unit // Lambda function for click handling
+    private val barList: List<Bar>,
+    private val isHorizontal: Boolean = false
 ) : RecyclerView.Adapter<BarAdapter.BarViewHolder>() {
 
+    inner class BarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val barImage: ImageView = if (isHorizontal) {
+            itemView.findViewById(R.id.favoriteImage)
+        } else {
+            itemView.findViewById(R.id.popularImage)
+        }
+        val barName: TextView = if (isHorizontal) {
+            TextView(itemView.context) // Horizontal doesn't display a name
+        } else {
+            itemView.findViewById(R.id.popularName)
+        }
+        val barVotes: TextView? = if (isHorizontal) null else itemView.findViewById(R.id.popularVotes)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BarViewHolder {
-        // Inflate the layout for individual bar items
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_bar, parent, false)
+        val layoutId = if (isHorizontal) R.layout.item_favorite else R.layout.item_popular
+        val view = LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
         return BarViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: BarViewHolder, position: Int) {
-        val bar = bars[position]
-
-        // Bind data to the ViewHolder
-        holder.bind(bar, clickListener)
-    }
-
-    override fun getItemCount(): Int = bars.size
-
-    // ViewHolder class for individual bar items
-    class BarViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val barImage: ImageView = itemView.findViewById(R.id.barImage)
-        private val barName: TextView = itemView.findViewById(R.id.barName)
-        private val barVotes: TextView = itemView.findViewById(R.id.barVotes)
-
-        // Bind data to the views
-        fun bind(bar: BarForDisplay, clickListener: (BarForDisplay) -> Unit) {
-            barImage.setImageResource(bar.imageRes)
-            barName.text = bar.name
-            barVotes.text = "${bar.votes} votes"
-
-            // Set click listener for the entire item view
-            itemView.setOnClickListener { clickListener(bar) }
+        val bar = barList[position]
+        holder.barImage.setImageResource(bar.imageResId)
+        if (!isHorizontal) {
+            holder.barName.text = bar.name
+            holder.barVotes?.text = "${bar.upvotes} votes"
         }
     }
+
+    override fun getItemCount(): Int = barList.size
 }

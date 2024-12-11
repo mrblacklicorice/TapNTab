@@ -5,10 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:background="#1C0132"
-    tools:context=".FrontPageActivity">
+    tools:context=".FrontPageFragment1">
 
-    <!-- Location Pin -->
+    <!-- Location Pin and Text -->
     <ImageView
         android:id="@+id/locPin"
         android:layout_width="24dp"
@@ -19,35 +20,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- User Location Text -->
-
-    <!-- TNT Logo -->
-
-    <!-- Search Bar -->
-
     <TextView
         android:id="@+id/userLocationText"
-        android:layout_width="117dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Fetching location..."
+        android:text="Madison, WI"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/locPin"
         app:layout_constraintStart_toEndOf="@id/locPin"
-        app:layout_constraintTop_toTopOf="@id/locPin"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="@id/locPin" />
 
+    <!-- TNT Logo -->
     <ImageView
         android:id="@+id/tntLogo"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/tnt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- Search Bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/searchBarContainer"
         android:layout_width="0dp"
@@ -64,9 +60,9 @@
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
             android:src="@drawable/search_img"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/searchInput"
@@ -77,10 +73,10 @@
             android:background="@android:color/transparent"
             android:textColor="#FFFFFF"
             android:textColorHint="#80FFFFFF"
-            app:layout_constraintStart_toEndOf="@id/searchIcon"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintStart_toEndOf="@id/searchIcon"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -100,24 +96,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favoritesRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="160dp"
         android:layout_marginTop="8dp"
+        android:scrollbars="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/favoritesTitle" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/favoritesSlider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:tabIndicatorColor="@color/purple_200"
-        app:tabSelectedTextColor="@color/purple_200"
-        app:tabIndicatorHeight="3dp"
-        app:tabTextColor="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@id/favoritesRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/favoritesTitle"
+        tools:listitem="@layout/item_favorite" />
 
     <!-- Most Popular Section -->
     <TextView
@@ -130,15 +116,18 @@
         android:textStyle="bold"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/favoritesSlider" />
+        app:layout_constraintTop_toBottomOf="@id/favoritesRecyclerView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/popularRecyclerView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:scrollbars="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/popularTitle" />
+        app:layout_constraintTop_toBottomOf="@id/popularTitle"
+        tools:listitem="@layout/item_popular" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

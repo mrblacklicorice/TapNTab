@@ -16,10 +16,11 @@ class NavigationActivity : AppCompatActivity() {
             val selectedFragment: Fragment = when (item.itemId) {
 //                R.id.navigation_home -> MenuFragment()
 //                R.id.navigation_nfc -> NFCFragment()
-                R.id.navigation_nfc -> StartTabFragment()
+                R.id.navigation_home -> FrontPageFragment1()
+                R.id.navigation_nfc -> SwipeUpToOpenTabFragment()
                 R.id.navigation_coupon -> CouponFragment()
                 R.id.navigation_profile -> ProfileFragment()
-                else -> StartTabFragment()
+                else -> FrontPageFragment1()
             }
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, selectedFragment)
