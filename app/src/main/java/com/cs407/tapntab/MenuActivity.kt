@@ -1,5 +1,6 @@
 package com.cs407.tapntab
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import android.util.Log
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import kotlinx.coroutines.tasks.await
@@ -90,6 +92,7 @@ class MenuActivity : AppCompatActivity() {
         val backButtonContainer: ConstraintLayout = findViewById(R.id.backButtonContainer)
         val expandedBottom: RelativeLayout = findViewById(R.id.bottom_tab_expanded)
         val bottomTab: RelativeLayout = findViewById(R.id.bottom_tab)
+        val payTab: Button = findViewById(R.id.pay_button)
 
         backButtonContainer.setOnClickListener {
             expandedBottom.visibility = RelativeLayout.GONE
@@ -97,6 +100,32 @@ class MenuActivity : AppCompatActivity() {
 
         bottomTab.setOnClickListener {
             expandedBottom.visibility = RelativeLayout.VISIBLE
+        }
+
+        payTab.setOnClickListener {
+            if (billItems.isEmpty()) {
+                showToast("No items in bill")
+            } else {
+                val intent = Intent(this, NavigationActivity::class.java)
+
+                val bill = mutableListOf<Map<String, *>>()
+
+                billItems.forEach { item ->
+                    bill.add(mapOf(
+                        "name" to item.name,
+                        "price" to item.price,
+                        "qty" to item.qty
+                    ))
+                }
+
+                intent.putExtra("bill", ArrayList(bill))
+                intent.putExtra("goto", "startTab")
+
+                billItems.clear()
+                billRecyclerView.adapter?.notifyDataSetChanged()
+
+                startActivity(intent)
+            }
         }
     }
 

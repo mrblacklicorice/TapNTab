@@ -3,10 +3,10 @@ package com.cs407.tapntab
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class NavigationActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)  // Ensure this matches your layout file name
@@ -28,6 +28,16 @@ class NavigationActivity : AppCompatActivity() {
         }
 
         // Load the default home fragment initially
-        bottomNav.selectedItemId = R.id.navigation_home
+        if(intent.getStringExtra("goto") == "startTab") {
+            bottomNav.selectedItemId = R.id.navigation_nfc
+            val startTabFragment = StartTabFragment()
+            val bill = intent.getSerializableExtra("bill") as ArrayList<Map<String, *>>
+            val bundle = Bundle()
+            bundle.putSerializable("bill", bill)
+            startTabFragment.arguments = bundle
+            supportFragmentManager.beginTransaction().replace(R.id.fragment_container, startTabFragment).commit()
+        }else{
+            bottomNav.selectedItemId = R.id.navigation_home
+        }
     }
 }
