@@ -6,17 +6,20 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import com.cs407.tapntab.SwipeUpToOpenTabFragment.Companion
 
 class SwipeDownToCloseTabFragment : Fragment() {
 
     private lateinit var gestureDetector: GestureDetector
 
-    // Constants for swipe detection
-    private val SWIPE_THRESHOLD = 100
-    private val VELOCITY_THRESHOLD = 100
+    companion object {
+        private const val SWIPE_THRESHOLD = 100
+        private const val VELOCITY_THRESHOLD = 100
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,9 +41,14 @@ class SwipeDownToCloseTabFragment : Fragment() {
                 velocityY: Float
             ): Boolean {
                 if (e1 != null && e2 != null) {
-                    // Detect swipe down: e2.y > e1.y
-                    if (e2.y - e1.y > SWIPE_THRESHOLD && Math.abs(velocityY) > VELOCITY_THRESHOLD) {
-                        closeTab()
+                    val diffY = e2.y - e1.y
+                    val diffX = e2.x - e1.x
+
+                    // Check for vertical swipe only
+                    if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > VELOCITY_THRESHOLD) {
+                        if (diffY > 0) {  // Swipe down detected
+                            navigateToFrontPage()
+                        }
                         return true
                     }
                 }
@@ -60,10 +68,31 @@ class SwipeDownToCloseTabFragment : Fragment() {
             gestureDetector.onTouchEvent(event)
             true
         }
+
+        // Handle "Go Back to Tab" button click
+        view.findViewById<Button>(R.id.goBackButton).setOnClickListener {
+            navigateToStartTab()
+        }
+    }
+    private fun navigateToStartTab() {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, StartTabFragment())
+            .addToBackStack(null)
+            .commit()
     }
 
-    private fun closeTab() {
-        // Close the fragment or notify the parent activity
-        parentFragmentManager.popBackStack()
+
+//    private fun navigateToFrontPage() {
+//        requireActivity().supportFragmentManager.beginTransaction()
+//            .replace(R.id.fragment_container, FrontpageFragment())
+//            .addToBackStack(null)
+//            .commit()
+//    }
+
+    private fun navigateToFrontPage() {
+        requireActivity().supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, StartTabFragment()) // change to front page
+            .addToBackStack(null)
+            .commit()
     }
 }

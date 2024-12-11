@@ -16,6 +16,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
+import android.widget.Button
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -82,10 +83,20 @@ class StartTabFragment : Fragment() {
             startActivity(intent)
         }
 
-        view.findViewById<View>(R.id.closeTabButton).setOnClickListener {
-            val intent = Intent(requireContext(), SwipeDownToCloseTabFragment::class.java)
-            startActivity(intent)
+        // Handle Close Tab Button Click
+        view.findViewById<Button>(R.id.closeTabButton).setOnClickListener {
+            val swipeDownFragment = SwipeDownToCloseTabFragment()
+
+            // Replace fragment in the container
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, swipeDownFragment)
+                .addToBackStack(null)  // Optional: Allows back navigation
+                .commit()
+
+            // Make FragmentContainerView visible
+            view.findViewById<View>(R.id.fragmentContainerView).visibility = View.VISIBLE
         }
+
         return view
     }
 
