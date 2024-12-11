@@ -58,7 +58,8 @@
             android:entries="@array/time_filter_options"
             android:popupBackground="#2C1C55"
             android:spinnerMode="dropdown"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            />
     </LinearLayout>
 
     <!-- RecyclerView for Past Tabs -->
