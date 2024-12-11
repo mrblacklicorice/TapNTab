@@ -31,5 +31,32 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
+
+//        if shared preferences has a user logged in, navigate to NavigationActivity
+        validateRememberMe()
+    }
+
+    private fun validateRememberMe() {
+        val sharedPreferences = getSharedPreferences("LoginPrefs", MODE_PRIVATE)
+        val rememberMe = sharedPreferences.getBoolean("RememberMe", false)
+        val rememberMeTimestamp = sharedPreferences.getLong("RememberMeTimestamp", 0)
+
+        if (rememberMe) {
+            val thirtyDaysInMillis = 30L * 24 * 60 * 60 * 1000 // 30 days in milliseconds
+            val currentTime = System.currentTimeMillis()
+
+            if (currentTime - rememberMeTimestamp <= thirtyDaysInMillis) {
+                // "Remember Me" is valid; navigate to the first page activity TODO change
+                val intent = Intent(this, NavigationActivity::class.java) // Adjust target as needed
+                startActivity(intent)
+                finish() // Prevent going back to LoginActivity
+            } else {
+                // "Remember Me" has expired; clear it
+                val editor = sharedPreferences.edit()
+                editor.remove("RememberMe")
+                editor.remove("RememberMeTimestamp")
+                editor.apply()
+            }
+        }
     }
 }

@@ -1,6 +1,8 @@
 package com.cs407.tapntab
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.GestureDetector
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -11,7 +13,13 @@ import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.cs407.tapntab.SwipeUpToOpenTabFragment.Companion
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class SwipeDownToCloseTabFragment : Fragment() {
 
@@ -76,6 +84,9 @@ class SwipeDownToCloseTabFragment : Fragment() {
         }
     }
     private fun navigateToStartTab() {
+        val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.navigation)
+        bottomNav.selectedItemId = R.id.navigation_nfc
+
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, StartTabFragment())
             .addToBackStack(null)
@@ -90,11 +101,61 @@ class SwipeDownToCloseTabFragment : Fragment() {
             Toast.LENGTH_LONG
         ).show()
 
+        val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.navigation)
+        bottomNav.selectedItemId = R.id.navigation_home
+
         requireActivity().supportFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, FrontPageFragment1())
             .addToBackStack(null)
             .commit()
+
+        val spentMoney = Intent(requireContext(), StartTabFragment::class.java).getDoubleExtra("tabTotal", 0.0)
+
+        Log.d("SwipeDownToCloseTab", "Spent money: $spentMoney")
+
+        lifecycleScope.launch {
+            addTabToHistory()
+        }
     }
 
+    suspend private fun addTabToHistory() {
+        val db = FirebaseFirestore.getInstance()
+        val email = AccountUtil.getUserDetails(requireContext())["Email"]
 
+        val historyItem = hashMapOf(
+            "barName" to "Brats Madison",
+            "total" to 0.0,
+            "timestamp" to Timestamp.now()
+        )
+
+        val usersRef = db.collection("users")
+
+        Log.d("Firestore", "Adding tab to email: $email")
+
+        try {
+            val documents = usersRef.whereEqualTo("email", email).get().await()
+
+            if (!documents.isEmpty) {
+                    for (document in documents) {
+                        val items = document.get("openedTab") as? List<Map<String, Any>> ?: mutableListOf()
+
+                        var total = 0.0
+                        for (item in items) {
+                            total += (item["price"] as Double) * (item["qty"] as Long)
+                        }
+
+                        historyItem["total"] = total
+
+                        val tabs = document.get("history") ?: mutableListOf<Map<String, *>>()
+                        val newTabs = tabs as MutableList<Map<String, *>>
+
+                        newTabs.add(historyItem)
+                        usersRef.document(document.id).update("history", newTabs).await()
+                        usersRef.document(document.id).update("openedTab", mutableListOf<Map<String, *>>()).await()
+                    }
+                }
+        } catch (e: Exception) {
+            Log.e("Firestore", "Error adding tab to history", e)
+        }
+    }
 }

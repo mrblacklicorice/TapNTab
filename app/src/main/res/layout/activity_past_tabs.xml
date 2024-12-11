@@ -55,11 +55,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:background="@drawable/spinner_background"
+            android:entries="@array/time_filter_options"
             android:popupBackground="#2C1C55"
-            android:spinnerMode="dropdown"
-            android:textColor="#FFFFFF"
-            android:entries="@array/time_filter_options"/>
-            />
+            android:spinnerMode="dropdown" />
     </LinearLayout>
 
     <!-- RecyclerView for Past Tabs -->

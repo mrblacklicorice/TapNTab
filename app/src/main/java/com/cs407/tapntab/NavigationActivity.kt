@@ -32,10 +32,6 @@ class NavigationActivity : AppCompatActivity() {
         if(intent.getStringExtra("goto") == "startTab") {
             bottomNav.selectedItemId = R.id.navigation_nfc
             val startTabFragment = StartTabFragment()
-            val bill = intent.getSerializableExtra("bill") as ArrayList<Map<String, *>>
-            val bundle = Bundle()
-            bundle.putSerializable("bill", bill)
-            startTabFragment.arguments = bundle
             supportFragmentManager.beginTransaction().replace(R.id.fragment_container, startTabFragment).commit()
         }else{
             bottomNav.selectedItemId = R.id.navigation_home

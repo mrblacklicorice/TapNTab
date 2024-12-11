@@ -17,7 +17,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 
 class MenuActivity : AppCompatActivity() {
     private lateinit var categoriesRecyclerView: RecyclerView
@@ -108,23 +110,15 @@ class MenuActivity : AppCompatActivity() {
             } else {
                 val intent = Intent(this, NavigationActivity::class.java)
 
-                val bill = mutableListOf<Map<String, *>>()
-
-                billItems.forEach { item ->
-                    bill.add(mapOf(
-                        "name" to item.name,
-                        "price" to item.price,
-                        "qty" to item.qty
-                    ))
-                }
-
-                intent.putExtra("bill", ArrayList(bill))
                 intent.putExtra("goto", "startTab")
 
-                billItems.clear()
-                billRecyclerView.adapter?.notifyDataSetChanged()
+                lifecycleScope.launch {
+                    addToBill(billItems)
+                    billItems.clear()
+                    billRecyclerView.adapter?.notifyDataSetChanged()
+                    startActivity(intent)
+                }
 
-                startActivity(intent)
             }
         }
     }
@@ -133,6 +127,51 @@ class MenuActivity : AppCompatActivity() {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 
+    private suspend fun addToBill(items: MutableList<BillItem>) {
+        val db = FirebaseFirestore.getInstance()
+        val email = AccountUtil.getUserDetails(this)["Email"]
+        val usersRef = db.collection("users")
+
+        try {
+            val documents = usersRef.whereEqualTo("email", email).get().await()
+
+            if (!documents.isEmpty) {
+                for (document in documents) {
+                    val existingItems = document.get("openedTab") as? MutableList<Map<String, Any>> ?: mutableListOf()
+
+                    for (item in items) {
+                        val itemName = item.name
+                        val itemPrice = item.price
+                        val itemQty = item.qty
+
+                        val existingItem = existingItems.find { it["name"] == itemName && it["price"] == itemPrice }
+                        val existingItemIndex = existingItems.indexOf(existingItem)
+
+                        Log.d("Firestore", "Existing item: $existingItem")
+
+                        if (existingItem == null) {
+                            existingItems.add(mapOf(
+                                "name" to itemName,
+                                "price" to itemPrice,
+                                "qty" to itemQty
+                            ))
+                        } else {
+                            val newQty = existingItem["qty"] as Long + itemQty
+                            existingItems[existingItemIndex] = existingItem.toMutableMap().apply {
+                                this["qty"] = newQty
+                            }
+                        }
+                    }
+
+                    Log.d("Firestore", "Adding items to bill: $existingItems")
+
+                    usersRef.document(document.id).update("openedTab", existingItems).await()
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("Firestore", "Error adding items to bill", e)
+        }
+    }
     private suspend fun fetchCategories() {
         val db = FirebaseFirestore.getInstance()
         try {

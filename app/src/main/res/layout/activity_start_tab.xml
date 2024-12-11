@@ -207,9 +207,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/total_label"
+        android:layout_width="165dp"
+        android:layout_height="42dp"
+        android:gravity="end"
+        android:text="Total"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/bill_recycler_view"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/redArrow"
+        app:layout_constraintTop_toBottomOf="@+id/bottom_bar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

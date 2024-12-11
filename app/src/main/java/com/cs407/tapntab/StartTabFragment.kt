@@ -20,6 +20,10 @@ import android.widget.Button
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.lifecycle.lifecycleScope
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class StartTabFragment : Fragment() {
     private lateinit var billedItemsRecyclerView: RecyclerView
@@ -30,6 +34,7 @@ class StartTabFragment : Fragment() {
     private lateinit var bottomBar: View
     private lateinit var plusButton: ImageButton
     private lateinit var instructionText: TextView
+    private lateinit var totalLabel: TextView
 
     companion object {
         private const val CHANNEL_ID = "start_tab_channel"
@@ -46,6 +51,7 @@ class StartTabFragment : Fragment() {
         bottomBar = view.findViewById(R.id.bottom_bar)
         plusButton = view.findViewById(R.id.plusButton)
         instructionText = view.findViewById(R.id.instructionText)
+        totalLabel = view.findViewById(R.id.total_label)
 
         billedItems = mutableListOf()
         billedItemsAdapter = TotalBillItemAdapter(billedItems)
@@ -87,6 +93,19 @@ class StartTabFragment : Fragment() {
         view.findViewById<Button>(R.id.closeTabButton).setOnClickListener {
             val swipeDownFragment = SwipeDownToCloseTabFragment()
 
+            // Calculate the total
+            var total = 0.0
+            billedItems.forEach { item ->
+                total += item.price * item.qty
+            }
+
+            // Create a Bundle to pass the total
+            val bundle = Bundle()
+            bundle.putDouble("tabTotal", total)
+            swipeDownFragment.arguments = bundle
+
+            totalLabel.visibility = View.GONE
+
             // Replace fragment in the container
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, swipeDownFragment)
@@ -103,18 +122,46 @@ class StartTabFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        val bill = arguments?.getSerializable("bill") as? ArrayList<Map<String, *>>
-        Log.d("StartTabFragment", "Bill: $bill")
+        // Get the bills
+        lifecycleScope.launch {
+            getBills()
+            updateBills()
+        }
+    }
 
-        val totalBillItems = bill?.map { item ->
-            TotalBillItem(
-                name = item["name"] as String,
-                price = item["price"] as Double,
-                qty = item["qty"] as Int
-            )
-        } ?: emptyList()
+    private suspend fun getBills() {
+        val db = FirebaseFirestore.getInstance()
+        val email = AccountUtil.getUserDetails(requireContext())["Email"]
 
-        updateBills(totalBillItems)
+        val usersRef = db.collection("users")
+
+        try {
+            val documents = usersRef.whereEqualTo("email", email).get().await()
+
+            if (!documents.isEmpty) {
+                for (document in documents) {
+                    val items = document.get("openedTab") ?: mutableListOf<Map<String, Any>>()
+                    var total = 0.0
+
+                    Log.d("StartTabFragment", "Items: $items")
+
+                    billedItems.clear()
+
+                    for (item in items as List<Map<String, Any>>) {
+                        val itemName = item["name"] as String
+                        val itemPrice = item["price"] as Double
+                        val itemQuantity = item["qty"] as Long
+
+                        billedItems.add(TotalBillItem(itemName, itemPrice, itemQuantity))
+                        total += itemPrice * itemQuantity
+                    }
+
+                    totalLabel.text = "Total: $${String.format("%.2f", total)}"
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("StartTabFragment", "Error getting past tabs", e)
+        }
     }
 
     fun createNotificationChannel(context: Context) {
@@ -163,17 +210,15 @@ class StartTabFragment : Fragment() {
         }
     }
 
-    private fun updateBills(bills: List<TotalBillItem>) {
+    private fun updateBills() {
         Log.d("StartTabFragment", "Previous bills: $billedItems")
-        Log.d("StartTabFragment", "Updating bills: $bills")
-
-        billedItems.addAll(bills)
 
         billedItemsAdapter.notifyDataSetChanged()
 
         billedItemsRecyclerView.visibility = if (billedItems.isEmpty()) View.GONE else View.VISIBLE
         topBar.visibility = if (billedItems.isEmpty()) View.GONE else View.VISIBLE
         bottomBar.visibility = if (billedItems.isEmpty()) View.GONE else View.VISIBLE
+        totalLabel.visibility = if (billedItems.isEmpty()) View.GONE else View.VISIBLE
 
         instructionText.visibility = if (billedItems.isEmpty()) View.VISIBLE else View.GONE
         plusButton.visibility = if (billedItems.isEmpty()) View.VISIBLE else View.GONE
