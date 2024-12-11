@@ -1,15 +1,17 @@
 package com.cs407.tapntab
 
-import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -19,6 +21,14 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 
 class StartTabFragment : Fragment() {
+    private lateinit var billedItemsRecyclerView: RecyclerView
+    private lateinit var billedItemsAdapter: TotalBillItemAdapter
+    private lateinit var billedItems: MutableList<TotalBillItem>
+
+    private lateinit var topBar: View
+    private lateinit var bottomBar: View
+    private lateinit var plusButton: ImageButton
+    private lateinit var instructionText: TextView
 
     companion object {
         private const val CHANNEL_ID = "start_tab_channel"
@@ -28,9 +38,17 @@ class StartTabFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.activity_start_tab, container, false)
+
+        billedItemsRecyclerView = view.findViewById(R.id.bill_recycler_view)
+        topBar = view.findViewById(R.id.top_bar)
+        bottomBar = view.findViewById(R.id.bottom_bar)
+        plusButton = view.findViewById(R.id.plusButton)
+        instructionText = view.findViewById(R.id.instructionText)
+
+        billedItems = mutableListOf()
+        billedItemsAdapter = TotalBillItemAdapter(billedItems)
+        billedItemsRecyclerView.adapter = billedItemsAdapter
 
         // Create the notification channel
         createNotificationChannel(requireContext())
@@ -57,6 +75,7 @@ class StartTabFragment : Fragment() {
             val intent = Intent(requireContext(), MenuActivity::class.java)
             startActivity(intent)
         }
+
         // Set up plusButton to navigate to the same MenuActivity
         view.findViewById<View>(R.id.plusButton).setOnClickListener {
             val intent = Intent(requireContext(), MenuActivity::class.java)
@@ -68,6 +87,23 @@ class StartTabFragment : Fragment() {
             startActivity(intent)
         }
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val bill = arguments?.getSerializable("bill") as? ArrayList<Map<String, *>>
+        Log.d("StartTabFragment", "Bill: $bill")
+
+        val totalBillItems = bill?.map { item ->
+            TotalBillItem(
+                name = item["name"] as String,
+                price = item["price"] as Double,
+                qty = item["qty"] as Int
+            )
+        } ?: emptyList()
+
+        updateBills(totalBillItems)
     }
 
     fun createNotificationChannel(context: Context) {
@@ -116,7 +152,22 @@ class StartTabFragment : Fragment() {
         }
     }
 
+    private fun updateBills(bills: List<TotalBillItem>) {
+        Log.d("StartTabFragment", "Previous bills: $billedItems")
+        Log.d("StartTabFragment", "Updating bills: $bills")
 
+        billedItems.addAll(bills)
+
+        billedItemsAdapter.notifyDataSetChanged()
+
+        billedItemsRecyclerView.visibility = if (billedItems.isEmpty()) View.GONE else View.VISIBLE
+        topBar.visibility = if (billedItems.isEmpty()) View.GONE else View.VISIBLE
+        bottomBar.visibility = if (billedItems.isEmpty()) View.GONE else View.VISIBLE
+
+        instructionText.visibility = if (billedItems.isEmpty()) View.VISIBLE else View.GONE
+        plusButton.visibility = if (billedItems.isEmpty()) View.VISIBLE else View.GONE
+    }
 }
+
 
 
