@@ -44,6 +44,17 @@
     <string name="your_tab">Your Tab</string>
     <string name="update">Update</string>
     <string name="already_acc">Already have an account?</string>
+    <string name="Sign_up_big">SIGN UP</string>
+    <string name="swipe_down_description">Swipe down Arrows</string>
+    <string name="logo_description">background logo</string>
+    <string name="swipe_up_description">swipe up arrows</string>
+    <string-array name="time_filter_options">
+        <item>Last 24hrs</item>
+        <item>Last week</item>
+        <item>Last month</item>
+        <item>All time</item>
+    </string-array>
+
 
 
 </resources>

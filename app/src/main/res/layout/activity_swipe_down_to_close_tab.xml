@@ -36,7 +36,6 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:alpha="0.2"
-        android:contentDescription="@string/logo_description_swipe_down"
         android:scaleType="fitCenter"
         android:src="@drawable/brats_logo"
         app:layout_constraintEnd_toEndOf="parent"

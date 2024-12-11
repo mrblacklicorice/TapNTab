@@ -28,9 +28,6 @@
             android:name=".ChangePassword"
             android:exported="false" />
         <activity
-            android:name=".StartTabFragment"
-            android:exported="false" />
-        <activity
             android:name=".EditProfile"
             android:exported="false" />
         <activity
@@ -46,16 +43,20 @@
             android:name=".NavigationActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true" />
+            android:name=".SwipeDownToCloseTabActivity"
+            android:exported="true"/>
         <activity
             android:name=".SwipeUpToOpenTabActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
     <!-- Permissions -->

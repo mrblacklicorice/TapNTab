@@ -25,11 +25,28 @@ class StartTabFragment : Fragment() {
             insets
         }
 
+
         // Set up button to navigate to MenuActivity
         view.findViewById<View>(R.id.menuButton).setOnClickListener {
             val intent = Intent(requireContext(), MenuActivity::class.java)
             startActivity(intent)
         }
+        // Set up plusButton to navigate to the same MenuActivity
+        view.findViewById<View>(R.id.plusButton).setOnClickListener {
+            val intent = Intent(requireContext(), MenuActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Set up closeTabButton to navigate to SwipeDownToCloseTabActivity
+//        view.findViewById<View>(R.id.closeTabButton).setOnClickListener {
+//            val intent = Intent(requireContext(), SwipeDownToCloseTabActivity::class.java)
+//            startActivity(intent)
+//        }
+        view.findViewById<View>(R.id.closeTabButton).setOnClickListener {
+            val intent = Intent(requireContext(), SwipeDownToCloseTabActivity::class.java)
+            startActivity(intent)
+        }
+
 
         return view
     }
