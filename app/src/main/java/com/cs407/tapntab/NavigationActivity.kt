@@ -17,7 +17,7 @@ class NavigationActivity : AppCompatActivity() {
 //                R.id.navigation_home -> MenuFragment()
 //                R.id.navigation_nfc -> NFCFragment()
                 R.id.navigation_home -> FrontPageFragment1()
-                R.id.navigation_nfc -> SwipeUpToOpenTabFragment()
+                R.id.navigation_nfc -> FragmentNFC()
                 R.id.navigation_coupon -> CouponFragment()
                 R.id.navigation_profile -> ProfileFragment()
                 else -> FrontPageFragment1()
