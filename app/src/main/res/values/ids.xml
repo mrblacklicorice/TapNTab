@@ -5,4 +5,15 @@
     <item name="thankYouText" type="id" />
     <item name="goBackButton" type="id" />
     <item name="thankYouTextBold" type="id" />
+    <item name="locPin" type="id" />
+    <item name="tntLogo" type="id" />
+    <item name="searchIcon" type="id" />
+    <item name="searchInput" type="id" />
+    <item name="favoritesTitle" type="id" />
+    <item name="popularTitle" type="id" />
+    <item name="favoritesRecyclerView" type="id" />
+    <item name="popularRecyclerView" type="id" />
+    <item name="barImage" type="id" />
+    <item name="barName" type="id" />
+    <item name="barVotes" type="id" />
 </resources>
