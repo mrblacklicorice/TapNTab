@@ -147,8 +147,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setupNotificationSwitch(view: View) {
-        val notificationsRow = view.findViewById<View>(R.id.NotificationsRow)
-        val switchNotif = view.findViewById<SwitchMaterial>(R.id.switchNotif)
+        val switchNotif = view.findViewById<com.google.android.material.switchmaterial.SwitchMaterial>(R.id.switchNotif)
         val sharedPreferences = requireContext().getSharedPreferences("UserSettings", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
 
@@ -157,17 +156,12 @@ class ProfileFragment : Fragment() {
         switchNotif.isChecked = isNotifEnabled
 
         // Handle switch click
-        notificationsRow.setOnClickListener {
-            val newState = !switchNotif.isChecked
-            switchNotif.isChecked = newState
-
-            // Save the new state
-            editor.putBoolean("NotificationsEnabled", newState)
+        switchNotif.setOnCheckedChangeListener { _, isChecked ->
+            editor.putBoolean("NotificationsEnabled", isChecked)
             editor.apply()
 
-            // Show appropriate toast message
-            val message = if (newState) "Notifications enabled" else "Notifications disabled"
-            showToast(message)
+            val message = if (isChecked) "Notifications enabled" else "Notifications disabled"
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
     }
 

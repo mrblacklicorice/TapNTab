@@ -57,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 if (authenticateUser(email, password)) {
                     // If credentials are correct, navigate to the first page
-                    val intent = Intent(this@LoginActivity, NavigationActivity::class.java)
+                    val intent = Intent(this@LoginActivity, FrontPageActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {

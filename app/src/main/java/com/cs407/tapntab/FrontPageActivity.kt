@@ -28,19 +28,19 @@ class FrontPageActivity : AppCompatActivity() {
     }
 
     // Data for Favorites Section
-    private fun getFavoritesData(): List<Bar> {
+    private fun getFavoritesData(): List<BarForDisplay> {
         return listOf(
-            Bar("Brats Madison", 7, R.drawable.fire_image),
-            Bar("Whiskey Jack's Saloon", 15, R.drawable.fire_image)
+            BarForDisplay("Brats Madison", 7, R.drawable.fire_image),
+            BarForDisplay("Whiskey Jack's Saloon", 15, R.drawable.fire_image)
         )
     }
 
     // Data for Most Popular Section
-    private fun getPopularData(): List<Bar> {
+    private fun getPopularData(): List<BarForDisplay> {
         return listOf(
-            Bar("Brats Madison", 7, R.drawable.fire_image),
-            Bar("Danny's Pub", 9, R.drawable.fire_image),
-            Bar("Whiskey Jack's Saloon", 15, R.drawable.fire_image)
+            BarForDisplay("Brats Madison", 7, R.drawable.fire_image),
+            BarForDisplay("Danny's Pub", 9, R.drawable.fire_image),
+            BarForDisplay("Whiskey Jack's Saloon", 15, R.drawable.fire_image)
         )
     }
 
@@ -48,4 +48,5 @@ class FrontPageActivity : AppCompatActivity() {
     private fun onBarClick(bar: BarForDisplay) {
         Toast.makeText(this, "Clicked: ${bar.name} with ${bar.votes} votes", Toast.LENGTH_SHORT).show()
     }
+
 }
