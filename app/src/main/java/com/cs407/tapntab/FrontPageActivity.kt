@@ -45,7 +45,7 @@ class FrontPageActivity : AppCompatActivity() {
     }
 
     // Handle Clicks on RecyclerView Items
-    private fun onBarClick(bar: Bar) {
+    private fun onBarClick(bar: BarForDisplay) {
         Toast.makeText(this, "Clicked: ${bar.name} with ${bar.votes} votes", Toast.LENGTH_SHORT).show()
     }
 }
